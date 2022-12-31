@@ -6,6 +6,16 @@ const CANVAS_HEIGHT = (canvas.height = 600);
 
 const playerImage = new Image();
 playerImage.src = "Assets/shadow_dog.png";
+const backgroundLayer1 = new Image();
+backgroundLayer1.src = "Assets/backgroundLayers/layer-1.png";
+const backgroundLayer2 = new Image();
+backgroundLayer2.src = "Assets/backgroundLayers/layer-2.png";
+const backgroundLayer3 = new Image();
+backgroundLayer3.src = "Assets/backgroundLayers/layer-3.png";
+const backgroundLayer4 = new Image();
+backgroundLayer4.src = "Assets/backgroundLayers/layer-4.png";
+const backgroundLayer5 = new Image();
+backgroundLayer5.src = "Assets/backgroundLayers/layer-5.png";
 
 const frameWidth = 575;
 const frameHeight = 523;
