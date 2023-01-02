@@ -38,7 +38,8 @@ let gameSpeed = 5;
 const drawImage = () => {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   context.drawImage(backgroundLayer4, currentFrameX, 0);
-  if (currentFrameX < -1000) currentFrameX = 0;
+  if (currentFrameX < -2400)
+    currentFrameX = 0; // match with the image size = 2400 px
   else {
     currentFrameX -= gameSpeed;
   }
