@@ -20,28 +20,23 @@ backgroundLayer5.src = "assets/backgroundLayers/layer-5.png";
 // const frameWidth = 575;
 // const frameHeight = 523;
 let currentFrameX = 0;
+let currentFrameX2 = 2400;
 // let currentFrameY = 0;
-let gameSpeed = 5;
+let gameSpeed = 10;
 
-// let gameSpeed = 5;
-// let gameFrame = 0;
-// const staggerFrame = 5;
-
-// const animationLogic = (animationState) => {
-//   currentFrameY = animationState.index;
-//   if (gameFrame % staggerFrame === 0) {
-//     if (currentFrameX < animationState.maxFrame) currentFrameX++;
-//     else currentFrameX = 0;
-//   }
-//   gameFrame++;
-// };
 const drawImage = () => {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   context.drawImage(backgroundLayer4, currentFrameX, 0);
+  context.drawImage(backgroundLayer4, currentFrameX2, 0);
   if (currentFrameX < -2400)
-    currentFrameX = 0; // match with the image size = 2400 px
+    currentFrameX = 2400; // match with the image size = 2400 px
   else {
     currentFrameX -= gameSpeed;
+  }
+  if (currentFrameX2 < -2400)
+    currentFrameX2 = 2400; // match with the image size = 2400 px
+  else {
+    currentFrameX2 -= gameSpeed;
   }
 };
 
