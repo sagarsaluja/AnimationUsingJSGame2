@@ -17,30 +17,26 @@ backgroundLayer4.src = "assets/backgroundLayers/layer-4.png";
 const backgroundLayer5 = new Image();
 backgroundLayer5.src = "assets/backgroundLayers/layer-5.png";
 
-// const frameWidth = 575;
-// const frameHeight = 523;
 let currentFrameX = 0;
 let currentFrameX2 = 2400;
-// let currentFrameY = 0;
-let gameSpeed = 10;
+let gameSpeed = 5;
 
 const drawImage = () => {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   context.drawImage(backgroundLayer4, currentFrameX, 0);
   context.drawImage(backgroundLayer4, currentFrameX2, 0);
 
-  if (currentFrameX < -2400) currentFrameX = 2400 - gameSpeed;
+  if (currentFrameX < -2400) currentFrameX = 2400 - gameSpeed + currentFrameX2;
   else {
     currentFrameX -= gameSpeed;
   }
-  if (currentFrameX2 < -2400) currentFrameX2 = 2400 - gameSpeed;
+  if (currentFrameX2 < -2400) currentFrameX2 = 2400 - gameSpeed + currentFrameX;
   else {
     currentFrameX2 -= gameSpeed;
   }
 };
 
 const animate = () => {
-  // animationLogic(animationStates[currentPlayerState]);
   drawImage();
   requestAnimationFrame(animate);
 };

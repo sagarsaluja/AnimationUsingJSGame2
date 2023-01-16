@@ -12,5 +12,15 @@
 
 //Solution
 //write logic to lessen the gap
+// if (x1 < -2400 ) reset to 2400 - gameSpeed;
+// if (x2 < -2400 ) reset to 2400 - gameSpeed;
+// gameSpeed is subtracted to the updates because while x1 is resetting , x2 will have moved by 15 (= gameSpeed)
 
-//
+//Problem 3:
+//there is still a small gap
+//We need to link x1 and x2 together.
+//because gameSpeed is not a multple of the image size , there are always pixels left out.
+//by doing reset to if (x1 < -2400 ) reset to 2400 - gameSpeed +x2;
+//even if gap is created , it corrects itself.
+
+// the gap is created because while the reset is happening , the image which is not being reset , might not exactly be at 0.
