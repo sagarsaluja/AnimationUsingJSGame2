@@ -28,13 +28,12 @@ const drawImage = () => {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   context.drawImage(backgroundLayer4, currentFrameX, 0);
   context.drawImage(backgroundLayer4, currentFrameX2, 0);
-  if (currentFrameX < -2400)
-    currentFrameX = 2400; // match with the image size = 2400 px
+
+  if (currentFrameX < -2400) currentFrameX = 2400 - gameSpeed;
   else {
     currentFrameX -= gameSpeed;
   }
-  if (currentFrameX2 < -2400)
-    currentFrameX2 = 2400; // match with the image size = 2400 px
+  if (currentFrameX2 < -2400) currentFrameX2 = 2400 - gameSpeed;
   else {
     currentFrameX2 -= gameSpeed;
   }
