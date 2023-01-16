@@ -24,3 +24,8 @@
 //even if gap is created , it corrects itself.
 
 // the gap is created because while the reset is happening , the image which is not being reset , might not exactly be at 0.
+
+//Writing simpler update logic:
+//the above technique is placing the images behind each other when one reaches the end.
+//sliding image technique:
+//when the first image reaches -2400 , reset it to 0. Position of 2nd image is always (x1 + 2400)
