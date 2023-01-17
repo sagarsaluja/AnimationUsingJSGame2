@@ -26,13 +26,11 @@ const drawImage = () => {
   context.drawImage(backgroundLayer4, currentFrameX, 0);
   context.drawImage(backgroundLayer4, currentFrameX2, 0);
 
-  if (currentFrameX < -2400) currentFrameX = 2400 - gameSpeed + currentFrameX2;
-  else {
+  if (currentFrameX < -2400) {
+    currentFrameX = 0;
+  } else {
     currentFrameX -= gameSpeed;
-  }
-  if (currentFrameX2 < -2400) currentFrameX2 = 2400 - gameSpeed + currentFrameX;
-  else {
-    currentFrameX2 -= gameSpeed;
+    currentFrameX2 = currentFrameX + 2400;
   }
 };
 
