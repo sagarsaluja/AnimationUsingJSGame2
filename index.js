@@ -3,9 +3,8 @@ const context = canvas.getContext("2d");
 
 const CANVAS_WIDTH = (canvas.width = 800);
 const CANVAS_HEIGHT = (canvas.height = 700);
+let GAME_SPEED = 1;
 
-const playerImage = new Image();
-playerImage.src = "assets/shadow_dog.png";
 const backgroundLayerImage1 = new Image();
 backgroundLayerImage1.src = "assets/backgroundLayers/layer-1.png";
 const backgroundLayerImage2 = new Image();
@@ -17,21 +16,20 @@ backgroundLayerImage4.src = "assets/backgroundLayers/layer-4.png";
 const backgroundLayerImage5 = new Image();
 backgroundLayerImage5.src = "assets/backgroundLayers/layer-5.png";
 
-let gameSpeed = 1;
 const slider = document.getElementById("sliderInput");
-slider.value = gameSpeed;
+slider.value = GAME_SPEED;
 slider.addEventListener("change", (e) => {
-  gameSpeed = e.target.value;
+  GAME_SPEED = e.target.value;
 });
 class Layer {
   constructor(image, speedModifier) {
     this.x = 0;
     this.y = 0;
-    this.width = 2400;
-    this.height = 720;
+    this.width = image.width;
+    this.height = image.height;
     this.image = image;
     this.speedModifier = speedModifier;
-    this.speed = this.speedModifier * gameSpeed;
+    this.speed = this.speedModifier * GAME_SPEED;
   }
   draw() {
     context.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -44,7 +42,7 @@ class Layer {
     );
   }
   update() {
-    this.speed = gameSpeed * this.speedModifier;
+    this.speed = GAME_SPEED * this.speedModifier;
     this.x -= this.speed;
     this.x %= this.width;
   }
