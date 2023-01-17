@@ -29,3 +29,7 @@
 //the above technique is placing the images behind each other when one reaches the end.
 //sliding image technique:
 //when the first image reaches -2400 , reset it to 0. Position of 2nd image is always (x1 + 2400)
+
+//Parallax effect:
+//When foreground layer moves faster than background layer
+//This creates an illusion of depth in 2D

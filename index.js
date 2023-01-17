@@ -19,19 +19,35 @@ backgroundLayer5.src = "assets/backgroundLayers/layer-5.png";
 
 let currentFrameX = 0;
 let currentFrameX2 = 2400;
-let gameSpeed = 5;
+let gameSpeed = 1;
+let gameFrame = 0;
+const backgroundLayers = [
+  backgroundLayer1,
+  backgroundLayer2,
+  backgroundLayer3,
+  backgroundLayer4,
+  backgroundLayer5,
+];
+const currentPositions = [0, 0, 0, 0, 0];
+const currentPositionSecondary = [2400, 2400, 2400, 2400, 2400];
+const speedModifiers = [5, 1, 1, 2, 1];
 
 const drawImage = () => {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  context.drawImage(backgroundLayer4, currentFrameX, 0);
-  context.drawImage(backgroundLayer4, currentFrameX2, 0);
+  backgroundLayers.forEach((x, index) => {
+    context.drawImage(x, currentPositions[index], 0);
+    context.drawImage(x, currentPositionSecondary[index], 0);
 
-  if (currentFrameX < -2400) {
-    currentFrameX = 0;
-  } else {
-    currentFrameX -= gameSpeed;
-    currentFrameX2 = currentFrameX + 2400;
-  }
+    if (currentPositions[index] < -2400) {
+      currentPositions[index] = 0;
+      currentPositionSecondary[index] = currentPositions[index] + 2400;
+    } else {
+      currentPositions[index] = gameFrame * (gameSpeed * speedModifiers[index]);
+      currentPositions[index] %= 2400;
+      currentPositionSecondary[index] = currentPositions[index] + 2400;
+    }
+  });
+  gameFrame--;
 };
 
 const animate = () => {
