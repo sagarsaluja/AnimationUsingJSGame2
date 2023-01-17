@@ -33,3 +33,8 @@
 //Parallax effect:
 //When foreground layer moves faster than background layer
 //This creates an illusion of depth in 2D
+
+//we need the position (x) to be between 0 and -2400
+//we can also take an ever increasing variable (gameFrame), and set x = gameFrame % 2400 in every loop
+
+//or better just set this.x %= this.width on every update

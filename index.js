@@ -6,48 +6,57 @@ const CANVAS_HEIGHT = (canvas.height = 700);
 
 const playerImage = new Image();
 playerImage.src = "assets/shadow_dog.png";
-const backgroundLayer1 = new Image();
-backgroundLayer1.src = "assets/backgroundLayers/layer-1.png";
-const backgroundLayer2 = new Image();
-backgroundLayer2.src = "assets/backgroundLayers/layer-2.png";
-const backgroundLayer3 = new Image();
-backgroundLayer3.src = "assets/backgroundLayers/layer-3.png";
-const backgroundLayer4 = new Image();
-backgroundLayer4.src = "assets/backgroundLayers/layer-4.png";
-const backgroundLayer5 = new Image();
-backgroundLayer5.src = "assets/backgroundLayers/layer-5.png";
+const backgroundLayerImage1 = new Image();
+backgroundLayerImage1.src = "assets/backgroundLayers/layer-1.png";
+const backgroundLayerImage2 = new Image();
+backgroundLayerImage2.src = "assets/backgroundLayers/layer-2.png";
+const backgroundLayerImage3 = new Image();
+backgroundLayerImage3.src = "assets/backgroundLayers/layer-3.png";
+const backgroundLayerImage4 = new Image();
+backgroundLayerImage4.src = "assets/backgroundLayers/layer-4.png";
+const backgroundLayerImage5 = new Image();
+backgroundLayerImage5.src = "assets/backgroundLayers/layer-5.png";
 
-let currentFrameX = 0;
-let currentFrameX2 = 2400;
+class Layer {
+  constructor(image, speedModifier) {
+    this.x = 0;
+    this.y = 0;
+    this.width = 2400;
+    this.height = 720;
+    this.image = image;
+    this.speedModifier = speedModifier;
+    this.speed = this.speedModifier * gameSpeed;
+  }
+  draw() {
+    context.drawImage(this.image, this.x, this.y, this.width, this.height);
+    context.drawImage(
+      this.image,
+      this.x + this.width,
+      this.y,
+      this.width,
+      this.height
+    );
+  }
+  update() {
+    this.x -= this.speed;
+    this.x %= this.width;
+  }
+}
 let gameSpeed = 1;
-let gameFrame = 0;
 const backgroundLayers = [
-  backgroundLayer1,
-  backgroundLayer2,
-  backgroundLayer3,
-  backgroundLayer4,
-  backgroundLayer5,
+  new Layer(backgroundLayerImage1, 1),
+  new Layer(backgroundLayerImage2, 2),
+  new Layer(backgroundLayerImage3, 3),
+  new Layer(backgroundLayerImage4, 4),
+  new Layer(backgroundLayerImage5, 5),
 ];
-const currentPositions = [0, 0, 0, 0, 0];
-const currentPositionSecondary = [2400, 2400, 2400, 2400, 2400];
-const speedModifiers = [5, 1, 1, 2, 1];
 
 const drawImage = () => {
   context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  backgroundLayers.forEach((x, index) => {
-    context.drawImage(x, currentPositions[index], 0);
-    context.drawImage(x, currentPositionSecondary[index], 0);
-
-    if (currentPositions[index] < -2400) {
-      currentPositions[index] = 0;
-      currentPositionSecondary[index] = currentPositions[index] + 2400;
-    } else {
-      currentPositions[index] = gameFrame * (gameSpeed * speedModifiers[index]);
-      currentPositions[index] %= 2400;
-      currentPositionSecondary[index] = currentPositions[index] + 2400;
-    }
+  backgroundLayers.forEach((layer) => {
+    layer.draw();
+    layer.update();
   });
-  gameFrame--;
 };
 
 const animate = () => {
